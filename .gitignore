@@ -1,0 +1,15 @@
+# El core no se versiona
+wordpress/
+
+# Archivos subidos por usuarios
+wp-content/uploads/
+
+# Ignora archivos de sistema
+*.log
+*.sql
+*.tar.gz
+*.zip
+.DS_Store
+
+# Ignora archivos de entorno
+.env

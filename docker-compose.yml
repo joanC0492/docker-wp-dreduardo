@@ -1,0 +1,75 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:8.0.35
+    container_name: wp-dreduardo-db
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+    profiles: [dev, prod] # DB disponible en ambos perfiles
+
+  wordpress-fpm-dev:
+    image: wordpress:6.8.1-php8.2-fpm
+    container_name: wp-dreduardo-fpm-dev
+    restart: always
+    links:
+      - db
+    volumes:
+      - ./wordpress:/var/www/html # 📁 Mapeo directo a carpeta local
+    environment:
+      WORDPRESS_DB_HOST: "${WORDPRESS_DB_HOST}"
+      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    profiles: [dev]
+
+  wordpress-fpm-prod:
+    image: wordpress:6.8.1-php8.2-fpm
+    container_name: wp-dreduardo-fpm-prod
+    restart: always
+    links:
+      - db
+    volumes:
+      - wordpress_data:/var/www/html # Volumen para producción (persistente)
+    environment:
+      WORDPRESS_DB_HOST: "${WORDPRESS_DB_HOST}"
+      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+    profiles: [prod]
+
+  nginx-dev:
+    image: nginx:1.26.1
+    container_name: wp-dreduardo-nginx-dev
+    restart: always
+    depends_on:
+      - wordpress-fpm-dev # Depende del servicio de desarrollo
+    ports:
+      - "8085:80"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./wordpress:/var/www/html # Comparte bind mount con wordpress-fpm-dev
+    profiles: [dev] # Solo en desarrollo
+
+  nginx-prod:
+    image: nginx:1.26.1
+    container_name: wp-dreduardo-nginx-prod
+    restart: always
+    depends_on:
+      - wordpress-fpm-prod # Depende del servicio de producción
+    ports:
+      - "8086:80"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - wordpress_data:/var/www/html # Comparte volumen con wordpress-fpm-prod
+    profiles: [prod] # Solo en producción
+volumes:
+  db_data:
+  wordpress_data: # Volumen para producción
