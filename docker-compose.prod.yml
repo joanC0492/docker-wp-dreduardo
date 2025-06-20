@@ -33,6 +33,7 @@ services:
       WORDPRESS_DB_USER: "${MYSQL_USER}"
       WORDPRESS_DB_PASSWORD: "${MYSQL_PASSWORD}"
       WORDPRESS_DEBUG: "0" # Debug desactivado
+      WORDPRESS_TABLE_PREFIX: "${WORDPRESS_TABLE_PREFIX}"
     networks:
       - wp_network
 
