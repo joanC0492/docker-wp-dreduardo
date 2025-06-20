@@ -61,3 +61,5 @@ docker-wp-dreduardo-wordpress-1: Es el name que nos da al ejecutar
                                 sudo docker compose -p docker-wp-dreduardo ps
 
 
+dreduardoflorescirugiape-wordpress-1
+sudo docker exec -it dreduardoflorescirugiape-wordpress-1 bash
