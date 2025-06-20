@@ -27,3 +27,12 @@ cp -r wordpress/wp-content/themes/mi-tema wp-content/themes/
 
 <!-- # Desde la raíz de tu proyecto (donde está el Dockerfile)
 docker build -t custom-wordpress:latest . -->
+
+<!-- EN SERVER -->
+git clone proyect
+
+cd proyect
+
+docker build -t custom-wordpress:latest .
+
+docker-compose -f docker-compose.prod.yml up -d
