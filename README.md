@@ -43,6 +43,7 @@ git clone proyect
 
 cd proyect
 
+# 
 sudo docker build -t custom-wordpress:latest .
 
 sudo cp .env.example .env

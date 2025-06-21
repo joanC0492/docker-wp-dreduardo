@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copiar wp-config.php personalizado (¡Ahora activo!)
-COPY ./wp-config.php /var/www/html/wp-config.php  
+# COPY ./wp-config.php /var/www/html/wp-config.php
 
 # Opcional: wp-config.php personalizado (sin credenciales)
 # COPY ./wp-config.php /var/www/html/wp-config.php
