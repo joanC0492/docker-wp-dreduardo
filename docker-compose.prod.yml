@@ -27,7 +27,7 @@ services:
       - wp_uploads:/var/www/html/wp-content/uploads # Uploads en volumen
       - ./wp-content/plugins:/var/www/html/wp-content/plugins # Plugins versionados
       - ./wp-content/themes:/var/www/html/wp-content/themes # Temas versionados
-      - ./:/var/www/html/wp-config.php
+      - ./wp-config.php:/var/www/html/wp-config.php
     environment:
       WORDPRESS_DB_HOST: database:3306
       WORDPRESS_DB_NAME: "${MYSQL_DATABASE}"

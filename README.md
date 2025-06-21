@@ -40,6 +40,7 @@ docker build -t custom-wordpress:latest . -->
 
 <!-- EN SERVER -->
 git clone proyect
+sudo git clone https://github.com/joanC0492/docker-wp-dreduardo.git dreduardoflorescirugia.pe
 
 cd proyect
 
@@ -54,7 +55,7 @@ sudo docker compose -f docker-compose.prod.yml up -d
 
 # Para verlo en prod
 sudo docker compose -f docker-compose.prod.yml ls
-sudo docker compose -p docker-wp-dreduardo ps
+sudo docker compose -p dreduardoflorescirugiape ps
 
 # Entrar al contenedor de mi custom wordpress
 sudo docker exec -it docker-wp-dreduardo-wordpress-1 bash
