@@ -37,6 +37,9 @@ docker exec -t dreduardoflorescirugiape-database-1 mysqldump -u root -p"rootpass
 
 <!-- # Desde la raíz de tu proyecto (donde está el Dockerfile)
 docker build -t custom-wordpress:latest . -->
+sudo docker compose -f docker-compose.prod.yml down -v
+sudo rm -rf dreduardoflorescirugia.pe/
+sudo docker rmi custom-wordpress
 
 <!-- EN SERVER -->
 git clone proyect
@@ -52,7 +55,7 @@ sudo cp .env.example .env
 ---Configurar el .env
 
 crear el archivo de configuracion
-sudo touch wp-config.php && sudo touch .htaccess
+sudo touch wp-config.php .htaccess
 
 sudo docker compose -f docker-compose.prod.yml up -d
 
