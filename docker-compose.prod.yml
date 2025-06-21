@@ -25,9 +25,9 @@ services:
     restart: unless-stopped
     volumes:
       - wp_uploads:/var/www/html/wp-content/uploads # Uploads en volumen
-      - ./wp-content/plugins:/var/www/html/wp-content/plugins # Plugins versionados
-      - ./wp-content/themes:/var/www/html/wp-content/themes # Temas versionados
+      # Archivos de configuración
       - ./wp-config.php:/var/www/html/wp-config.php
+      - ./wp-content/.htaccess:/var/www/html/.htaccess
     environment:
       WORDPRESS_DB_HOST: database:3306
       WORDPRESS_DB_NAME: "${MYSQL_DATABASE}"

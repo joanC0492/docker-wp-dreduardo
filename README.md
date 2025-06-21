@@ -51,6 +51,9 @@ sudo cp .env.example .env
 
 ---Configurar el .env
 
+crear el archivo de configuracion
+sudo touch wp-config.php && sudo touch .htaccess
+
 sudo docker compose -f docker-compose.prod.yml up -d
 
 # Para verlo en prod
@@ -65,3 +68,6 @@ docker-wp-dreduardo-wordpress-1: Es el name que nos da al ejecutar
 
 dreduardoflorescirugiape-wordpress-1
 sudo docker exec -it dreduardoflorescirugiape-wordpress-1 bash
+
+
+---

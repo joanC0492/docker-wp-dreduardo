@@ -10,6 +10,7 @@ wp-content/uploads/
 *.tar.gz
 *.zip
 .DS_Store
+wp-config.php
 
 # Ignora archivos de entorno
 .env
